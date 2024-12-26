@@ -1,33 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
+import { de } from "vuetify/locale";
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-
-const API_KEY = import.meta.env.VITE_TOKEN;
-alert(API_KEY)
-
-
+const baseUrl = "https://api.themoviedb.org/3";
+const api_key = import.meta.env.VITE_TOKEN;
 
 const tmdb = axios.create({
-  baseURL: BASE_URL,
+  baseURL: baseUrl,
   params: {
-    api_key: API_KEY,
-  },
-});
+    api_key: api_key
+  }
+})
 
-tmdb
-  .get('/movie/popular') 
-  .then((response) => {
-    console.log("Requisição bem-sucedida:", response.data);
-  })
-  .catch((error) => {
-    if (error.response) {
-      console.error("Erro no servidor:", error.response.data);
-      console.error("Status:", error.response.status);
-    } else if (error.request) {
-      console.error("Sem resposta", error.request);
-    } else {
-      console.error("Erro na requisição:", error.message);
-    }
-  });
-
-export default tmdb;
+export default tmdb
